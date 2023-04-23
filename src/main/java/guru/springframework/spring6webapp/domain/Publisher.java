@@ -2,7 +2,7 @@ package guru.springframework.spring6webapp.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.Objects;
 
 /**
  * Created by jt, Spring Framework Guru.
@@ -20,8 +20,8 @@ public class Publisher {
     private String state;
     private String zipCode;
 
-    @OneToMany(mappedBy = "publisher")
-    private Set<Book> books;
+//    @OneToMany(mappedBy = "publisher")
+//    private Set<Book> books;
 
     public Long getId() {
         return id;
@@ -86,11 +86,9 @@ public class Publisher {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Publisher)) return false;
+        if (!(o instanceof Publisher publisher)) return false;
 
-        Publisher publisher = (Publisher) o;
-
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
+        return Objects.equals(id, publisher.id);
     }
 
     @Override
